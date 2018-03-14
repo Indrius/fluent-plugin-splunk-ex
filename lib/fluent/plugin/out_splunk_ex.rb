@@ -47,6 +47,8 @@ class Fluent::SplunkExOutput < Fluent::Output
 
     if @output_format == 'kv'
       @format_fn = self.class.method(:format_kv)
+    elsif @output_format == 'logentries'
+      @format_fn = self.class.method(:format_logentries)
     else
       @format_fn = self.class.method(:format_json)
     end
@@ -90,6 +92,12 @@ class Fluent::SplunkExOutput < Fluent::Output
       kv_out_str << sprintf('%s=%s ', URI::encode(k), URI::encode(v.to_s))
     }
     kv_out_str
+  end
+
+  def self.format_logentries(record)
+    label = record["kubernetes"]["labels"]["logentries"]
+    message = record["message"]
+    le_out_str = label + " " + message
   end
 
   def self.format_json(record)
