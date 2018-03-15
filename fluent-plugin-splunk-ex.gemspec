@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 Gem::Specification.new do |gem|
-  gem.name         = "fluent-plugin-splunk-ex"
+  gem.name         = "fluent-plugin-splunk-ex-logentries"
   gem.version      = "1.0.1.logentries"
 
   gem.authors      = ["Trevor Gattis"]
