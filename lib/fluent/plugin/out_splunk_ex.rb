@@ -96,8 +96,10 @@ class Fluent::SplunkExOutput < Fluent::Output
 
   def self.format_logentries(record)
     label = record["kubernetes"]["labels"]["logentries"]
+	host = record["kubernetes"]["host"]
+	level = record["level"]
     message = record["message"]
-    le_out_str = label + " " + message
+    le_out_str = label + " " + host + " " + level + " " + message
   end
 
   def self.format_json(record)

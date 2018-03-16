@@ -5,6 +5,9 @@
 This plugin will send your fluentd logs to a splunk server.  It can send the data in either
 key/value (k1=v1 k2=v2) or json format for easy splunk parsing.
 
+Modified the original project to enable Openshift-Logentries integration (new "output_format" setting available: "logentries").
+The "logentries" output produces a human-readable string containing a label (for Logentries log matching), hostname, log level and log message.
+
 
 ## Installation
 
@@ -16,9 +19,9 @@ key/value (k1=v1 k2=v2) or json format for easy splunk parsing.
 
     <match pattern>
       type splunk_ex
-      host <splunk_host>          # default: localhost
-      port <splunk_port>          # default: 9997 - but you'll want to change this
-      output_format json|kv       # default: json
+      host <splunk_host>                 # default: localhost
+      port <splunk_port>                 # default: 9997 - but you'll want to change this
+      output_format json|kv|logentries   # default: json
     </match>
 
 ### Splunk
