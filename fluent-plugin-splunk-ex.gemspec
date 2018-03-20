@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name         = "fluent-plugin-splunk-ex-logentries"
-  gem.version      = "1.0.1.logentries.2"
+  gem.version      = "1.0.1.logentries.3"
 
   gem.authors      = ["Trevor Gattis"]
   gem.email        = "github@trevorgattis.com"
