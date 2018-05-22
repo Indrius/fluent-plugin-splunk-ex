@@ -95,9 +95,24 @@ class Fluent::SplunkExOutput < Fluent::Output
   end
 
   def self.format_logentries(record)
-    label = record["kubernetes"]["labels"]["logentries"]
-	host = record["kubernetes"]["host"]
-    message = record["message"]
+    if record["kubernetes"] && record["kubernetes"]["labels"] && record["kubernetes"]["labels"]["logentries"]
+        label = record["kubernetes"]["labels"]["logentries"]
+    else
+        label = nil
+    end
+
+    if record["kubernetes"] && record["kubernetes"]["host"]
+        host = record["kubernetes"]["host"]
+    else
+        host = nil
+    end
+
+    if record["message"]
+        message = record["message"]
+    else
+        message = nil
+    end
+
     le_out_str = "\"" + label.to_s + "\" " + host.to_s + " " + message.to_s
   end
 
